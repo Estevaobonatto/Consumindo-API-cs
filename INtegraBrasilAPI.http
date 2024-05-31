@@ -1,0 +1,6 @@
+@INtegraBrasilAPI_HostAddress = http://localhost:5227
+
+GET {{INtegraBrasilAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
