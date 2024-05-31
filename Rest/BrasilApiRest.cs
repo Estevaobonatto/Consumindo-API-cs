@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
+using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
 using INtegraBrasilAPI.Dtos;
@@ -10,8 +11,16 @@ using INtegraBrasilAPI.Models;
 
 namespace INtegraBrasilAPI.Rest
 {
+    /// <summary>
+    /// Classe responsável por realizar as requisições à API BrasilApi
+    /// </summary>
     public class BrasilApiRest : IBrasilApi
     {
+        /// <summary>
+        /// Busca um banco pelo seu código no BrasilApi
+        /// </summary>
+        /// <param name="codigoBanco">Código do banco</param>
+        /// <returns>Uma tarefa contendo uma resposta contendo o modelo do banco</returns>
         public Task<ResponseGenerico<BancoModel>> BuscarBanco(string codigoBanco)
         {
             throw new NotImplementedException();
@@ -22,6 +31,11 @@ namespace INtegraBrasilAPI.Rest
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Busca um endereço pelo seu CEP no BrasilApi
+        /// </summary>
+        /// <param name="cep">CEP do endereço</param>
+        /// <returns>Uma tarefa contendo uma resposta contendo o modelo do endereço</returns>
         public async Task<ResponseGenerico<EnderecoModel>> BuscarEnderecoPorCEP(string cep)
         {
             // Cria uma requisição HTTP GET para a API BrasilApi com o CEP fornecido
@@ -61,17 +75,14 @@ namespace INtegraBrasilAPI.Rest
             // Retorna a resposta com o objeto de retorno ou informações de erro
             return response;
         }
-        
+
+        /// <summary>
+        /// Busca todos os bancos no BrasilApi
+        /// </summary>
+        /// <returns>Uma tarefa contendo uma resposta contendo a lista de modelos dos bancos</returns>
         public Task<ResponseGenerico<List<BancoModel>>> BuscarTodosBancos()
         {
-                    throw new NotImplementedException();
+            throw new NotImplementedException();
         }
-        
     }
-    
-        
-        
-        
-
-        
 }

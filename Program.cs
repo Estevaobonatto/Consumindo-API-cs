@@ -1,33 +1,34 @@
-using INtegraBrasilAPI.Interfaces;
-using INtegraBrasilAPI.Mappings;
-using INtegraBrasilAPI.Rest;
-using INtegraBrasilAPI.Services;
+using INtegraBrasilAPI.Interfaces; // Interfaces da API
+using INtegraBrasilAPI.Mappings; // Mappings da API
+using INtegraBrasilAPI.Rest; // Implementação da API
+using INtegraBrasilAPI.Services; // Serviços da API
 
-var builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder(args); // Criação do builder
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+// Adiciona serviços ao contêiner
+// Saiba mais sobre a configuração do Swagger/OpenAPI em https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddControllers(); // Adiciona controladores
+builder.Services.AddEndpointsApiExplorer(); // Adiciona os controladores de ponto de extremidade
+builder.Services.AddSwaggerGen(); // Adiciona o Swagger
 
-builder.Services.AddSingleton<IEnderecoService, EnderecoService>();
-//builder.Services.AddSingleton<IBancoService, BancoService>();
-builder.Services.AddSingleton<IBrasilApi, BrasilApiRest>();
+builder.Services.AddSingleton<IEnderecoService, EnderecoService>(); // Adiciona o serviço de endereço
+//builder.Services.AddSingleton<IBancoService, BancoService>(); // Adiciona o serviço de banco
+builder.Services.AddSingleton<IBrasilApi, BrasilApiRest>(); // Adiciona a implementação da API
 
-//builder.Services.AddAutoMapper(typeof(EnderecoMapping), typeof(BancoMapping));
+//builder.Services.AddAutoMapper(typeof(EnderecoMapping), typeof(BancoMapping)); // Adiciona o mapeamento automático
 
-var app = builder.Build();
+var app = builder.Build(); // Cria a aplicação
 
-// Configure the HTTP request pipeline.
+// Configura o pipeline de solicitação HTTP
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwagger(); // Utiliza o Swagger em ambiente de desenvolvimento
+    app.UseSwaggerUI(); // Utiliza a interface do usuário do Swagger
 }
 
-app.UseHttpsRedirection();
-app.UseAuthorization();
-app.MapControllers();
+app.UseHttpsRedirection(); // Redireciona para HTTPS
+app.UseAuthorization(); // Utiliza a autorização
+app.MapControllers(); // Mapeia os controladores
 
-app.Run();
+app.Run(); // Executa a aplicação
+

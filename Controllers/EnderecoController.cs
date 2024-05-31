@@ -9,16 +9,33 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace INtegraBrasilAPI.Controllers
 {
+    /// <summary>
+    /// Controller responsável por buscar endereços pelo CEP
+    /// </summary>
     [ApiController]
     [Route("api/v1/[controller]")]
     public class EnderecoController : ControllerBase
     {
-        public readonly IEnderecoService _enderecoService;
+        /// <summary>
+        /// Serviço responsável por buscar endereços
+        /// </summary>
+        private readonly IEnderecoService _enderecoService;
 
+        /// <summary>
+        /// Construtor da classe
+        /// </summary>
+        /// <param name="enderecoService">Serviço de endereço</param>
         public EnderecoController(IEnderecoService enderecoService)
         {
             _enderecoService = enderecoService;
         }
+
+        /// <summary>
+        /// Busca um endereço pelo seu CEP
+        /// </summary>
+        /// <param name="cep">CEP do endereço</param>
+        /// <returns>Uma tarefa contendo uma resposta contendo o modelo do endereço</returns>
+        [HttpGet("{cep}")]
         public async Task<IActionResult> BuscarEndereco([FromRoute]string cep) {
             var response = await _enderecoService.BuscarEndereco(cep);
             if(response.CodigoHttp == HttpStatusCode.OK){
